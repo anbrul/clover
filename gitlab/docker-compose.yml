@@ -3,41 +3,45 @@ services:
   gitlab:
     image: 'gitlab/gitlab-ce:latest'
     restart: always
-    hostname: '111.9.116.162'
+    hostname: 'git.xiaolingenglish.com'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://git.chiqtv.cn'
+        external_url 'http://git.xiaolingenglish.com:51101'
         gitlab_rails['gitlab_email_enabled'] = true
-        gitlab_rails['gitlab_email_from'] = '120011676@qq.com'
-        gitlab_rails['gitlab_email_display_name'] = 'Gitlab Administrators'
-        gitlab_rails['gitlab_email_reply_to'] = '120011676@qq.com'
+        gitlab_rails['gitlab_email_from'] = 'xiaolingadmin@163.com'
+        gitlab_rails['gitlab_email_display_name'] = 'Gitlab Admin'
+        gitlab_rails['gitlab_email_reply_to'] = 'noreply@xiaolingenglish.com'
         gitlab_rails['gitlab_email_subject_suffix'] = 'gitlab-'
         
         gitlab_rails['smtp_enable'] = true
-        gitlab_rails['smtp_address'] = "smtp.qq.com"
+        gitlab_rails['smtp_address'] = "smtp.163.com"
         gitlab_rails['smtp_port'] = 465
-        gitlab_rails['smtp_user_name'] = "120011676@qq.com"
-        gitlab_rails['smtp_password'] = "hrllwxgfmtqkbhbh"
-        gitlab_rails['smtp_domain'] = "qq.com"
+        gitlab_rails['smtp_user_name'] = "xiaolingadmin@163.com"
+        gitlab_rails['smtp_password'] = "xlshouquanma2019"
+        gitlab_rails['smtp_domain'] = "163.com"
         gitlab_rails['smtp_authentication'] = "login"
         gitlab_rails['smtp_enable_starttls_auto'] = true
         gitlab_rails['smtp_tls'] = true
+        
+        #gitlab_rails['gitlab_ssh_host'] = 'git.xiaolingenglish.com'
+        # ssh¶Ë¿ÚºÅ
+        gitlab_rails['gitlab_shell_ssh_port'] = 51102
         
         gitlab_rails['ldap_enabled'] = true
         gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
           main:
             label: 'LDAP'
-            host: 'ldap.chiqtv.cn'
+            host: 'ldap.xiaolingenglish.com'
             port: 389
             uid: 'uid'
-            bind_dn: 'cn=admin,dc=chiqtv,dc=cn'
-            password: '=[;.-pl,0okm'
+            bind_dn: 'cn=admin,dc=xiaolingenglish,dc=com'
+            password: '=0oxlMike17'
             encryption: 'plain'
             active_directory: true
             allow_username_or_email_login: true
             block_auto_created_users: false
-            base: 'ou=users,ou=hlj,dc=chiqtv,dc=cn'
-            group_base: 'ou=groups,ou=hlj,dc=chiqtv,dc=cn'
+            base: 'ou=users,ou=xl,dc=xiaolingenglish,dc=com'
+            group_base: 'ou=groups,ou=xl,dc=xiaolingenglish,dc=com'
             user_filter: ''
             attributes:
               username: ['uid', 'userid', 'sAMAccountName','cn']
@@ -47,8 +51,8 @@ services:
               last_name:  'sn'
         EOS
     ports:
-      - '180:80'
-      - '22:22'
+      - '51101:51101'
+      - '51102:51102'
     volumes:
       - './config:/etc/gitlab'
       - './logs:/var/log/gitlab'

@@ -1,0 +1,44 @@
+version: '3'
+services:
+  Ewomail:
+    image: bestwu/ewomail
+    restart: always
+    hostname: 'mail.xiaolingenglish.com'
+    ports:
+      # SMTP
+      - "25:25"
+      # POP2
+      - "109:109"
+      # POP3
+      - "110:110"
+      # IMAP
+      - "143:143"
+      #SMTPS
+      - "465:465"
+      # EXCHANGE
+      - "587:587"
+      #IMAPS
+      - "993:993"
+      #POP3S
+      - "995:995"
+      # Weomail user ports
+      - "80:80"
+      # Weomail admin ports
+      - "8080:8080"
+    volumes:
+      - ./ewomail/mysql/data/:/ewomail/mysql/data/
+      - ./ewomail/mail/:/ewomail/mail/
+      - ./ssl/certs/:/etc/ssl/certs/
+      - ./ssl/private:/etc/ssl/private
+      # - ./postfix:/etc/postfix
+      - ./ewomail/www/rainloop/data:/ewomail/www/rainloop/data
+      - ./ewomail/dkim:/ewomail/dkim
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge
+
+
+
+
