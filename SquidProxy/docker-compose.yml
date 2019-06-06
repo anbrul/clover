@@ -1,0 +1,18 @@
+version: '3'
+services:
+  squid3:
+    image: sameersbn/squid:3.3.8-14
+    restart: always
+    ports:
+      - "3128:3128"
+    environment:
+      - TZ=Asia/Shanghai      
+    volumes:
+      - ./squid3:/etc/squid3/
+      - ./log/squid3:/var/log/squid3
+      - ./spool/squid3:/var/spool/squid3
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge

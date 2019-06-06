@@ -1,0 +1,25 @@
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "runner in ci server docker"
+  url = "http://git.xiaolingenglish.com:51101/"
+  token = "6obFoNFDnfjc9nR3bGyY"
+  executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "docker:latest"
+    privileged = true
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = ["/cache","/opt/data/gitlab-runner/.m2:/root/.m2"]
+    extra_hosts = ["git.xiaolingenglish.com:172.19.101.45","registry.xiaolingenglish.com:172.19.101.45"]
+    pull_policy = "if-not-present"
+    shm_size = 0
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]

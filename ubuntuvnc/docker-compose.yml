@@ -1,0 +1,14 @@
+version: '3'
+services:
+  ubuntuvnc:
+    image: dorowu/ubuntu-desktop-lxde-vnc
+    restart: always
+    ports:
+      - "51150:80"
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge

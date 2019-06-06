@@ -1,0 +1,24 @@
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "runner in ci server docker"
+  url = "http://git.xiaolingenglish.com:51101/"
+  token = "6obFoNFDnfjc9nR3bGyY"
+  executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "alpine:latest"
+    privileged = false
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = ["/cache"]
+    shm_size = 0
+    #pull_policy = never  # 该配置默认always，即只在线上拉取镜像
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]

@@ -1,0 +1,20 @@
+version: '3'
+services:
+  Ewomail:
+    image: 'microsoft/aspnet:latest'
+    restart: always
+    ports:     
+      - "53000:80"
+      
+    volumes:
+      # - ./postfix:/etc/postfix
+
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge
+
+
+
+

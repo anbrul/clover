@@ -1,0 +1,14 @@
+version: "3"
+services:
+
+  vpn:
+    image: fcojean/l2tp-ipsec-vpn-server
+    privileged: true
+    ports:
+    - "3000:500/udp"
+    - "3001:4500/udp"
+    restart: always
+    env_file:
+    - vpn.env
+    volumes:
+      - /lib/modules:/lib/modules:ro

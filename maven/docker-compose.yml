@@ -1,0 +1,16 @@
+version: '3'
+services:
+  maven:
+    image: maven:3.6.0-jdk-12-alpine
+    restart: always    
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - maven-repo:/root/.m2
+      - maven-code:/tmp/maven
+    #command:cd /tmp/maven && mvn clean package
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge

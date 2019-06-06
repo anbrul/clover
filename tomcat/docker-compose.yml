@@ -1,0 +1,16 @@
+version: '3'
+services:
+  tomcat9:
+    image: tomcat:9-jre8-alpine
+    restart: always
+    ports:
+      - "522:8080"
+    environment:
+      - TZ=Asia/Shanghai      
+    volumes:
+      - ./webapps:/usr/local/tomcat/webapps
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge

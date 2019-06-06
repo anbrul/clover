@@ -52,7 +52,8 @@ services:
         EOS
     ports:
       - '51101:51101'
-      - '51102:51102'
+      # 22 for ssh
+      - '51102:22'
     volumes:
       - './config:/etc/gitlab'
       - './logs:/var/log/gitlab'

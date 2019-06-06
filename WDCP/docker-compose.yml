@@ -1,0 +1,19 @@
+version: '3'
+services:
+  wdcp:
+    image: mingfunwong/wdcp
+    restart: always
+    ports:
+      - "21:21"
+      - "80:80"
+      - "443:443"
+      - "3306:3306"
+      - "8080:8080"
+      - "20000-20500:20000-20500"
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge

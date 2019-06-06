@@ -1,0 +1,14 @@
+version: '3'
+services:
+  solo:
+    image: mufeng5619/solo_auto:release-3.3.0
+    restart: always
+    ports:
+      - "521:8080"   
+    volumes:
+      - ./classes:/root/blog/WEB-INF/classes
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge
