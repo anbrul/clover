@@ -3,6 +3,8 @@ services:
   java8:
     image: 'java:8-jdk-alpine'
     restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=test
     volumes:
       - ./data:/tmp/javaapp
     ports:
