@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  zoo1:
+    image: zookeeper
+    container_name: zookeeper251
+    restart: always
+    hostname: zoo1
+    ports:
+      - 10000:2181
+      - 10001:2888
+      - 10002:3888
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=172.19.237.223:10001:10002;10000 server.2=0.0.0.0:2888:3888;2181 server.3=172.19.198.166:10001:10002;10000
+    networks:
+      - "prod_bridge"
+networks:
+  prod_bridge:
+    external: true

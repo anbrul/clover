@@ -1,6 +1,5 @@
 version: "3"
 services:
-
   vpn:
     image: fcojean/l2tp-ipsec-vpn-server
     privileged: true

@@ -1,10 +1,13 @@
 单主机上配置network让容器互通
+查看网络 docker network list
 docker network create dev_bridge
 容器都使用这个bridge，例如：
 version: '3'
 services:
   redis:
     image: redis:alpine
+    container_name: redis
+    hostname: redis_host
     restart: always
     volumes:
       - ./data:/data

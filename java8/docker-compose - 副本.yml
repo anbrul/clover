@@ -1,0 +1,17 @@
+version: '3'
+services:
+  java8:
+    image: 'java:8-jdk-alpine'
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    volumes:
+      - ./data:/tmp/javaapp
+    ports:
+      - 6006:8080
+    command: java -jar /tmp/javaapp/xlmpapi-1.0.0.jar"
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge

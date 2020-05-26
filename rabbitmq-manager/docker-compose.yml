@@ -1,0 +1,18 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.8-rc-management-alpine
+    container_name: rabbitmq3.8
+    hostname: rabbit_mq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS==xl2020Admin    
+    ports:
+      - 6000:15672
+      - 6001:5672    
+    networks:
+      - "dev"
+networks:
+  dev:
+    driver: bridge
